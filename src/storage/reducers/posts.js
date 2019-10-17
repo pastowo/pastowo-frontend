@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
 
 export const initialState = {
-	postsToFetch: [742, 777, 791, 1],
+	postsToFetch: [742, 777, 791, 1, 345],
 	posts: [],
 	loading: false
 }

@@ -25,6 +25,11 @@ class PostsContainer extends Component {
 				
 				<Switch>
 					<Route path='/' exact component={() => <PostsList postsList={this.props.posts} />} />
+					<Route path='/home' exact component={() => <PostsList postsList={this.props.posts} />} />
+					<Route path='/home/:pageNum' component={() => <PostsList postsList={this.props.posts} />} />
+	        <Route
+						path='/paste/:postId/:langCode'
+					component={() => { return <PostPage posts={this.props.posts} />}} />
 	        <Route
 						path='/paste/:postId'
 					component={() => { return <PostPage posts={this.props.posts} />}} />

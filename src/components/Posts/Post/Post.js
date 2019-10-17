@@ -3,6 +3,7 @@ import {
   Card,
   Header,
 	Button,
+	ButtonGroup,
 	Row,
 	Col,
 	Badge,
@@ -13,23 +14,37 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classes from './Post.module.css';
 
 const post = (props) => {
-	console.log(props.textLarge);
 
-	let bodyText = props.postData.langv['pl'].body;
-		if (!props.extended) {
-			bodyText = props.postData.langv['pl'].body.substring(0, 300);
-		if(props.postData.langv['pl'].body.length > 300) bodyText += '...';
+	let selectedLanguage = props.postData.langs[0];
+
+	if(props.selectedLanguage) {
+		selectedLanguage = props.selectedLanguage;
 	}
+
+	console.log("GÓWNO", selectedLanguage, props);
+
+	let bodyText = props.postData.langv[selectedLanguage].body;
+		if (!props.extended) {
+			bodyText = props.postData.langv[selectedLanguage].body.substring(0, 300);
+		if(props.postData.langv[selectedLanguage].body.length > 300) bodyText += '...';
+	}
+
+	const languageButtons = props.postData.langs.map(lang => (
+		<Button
+			onClick={() => props.changeLanguage(props.postData.id, lang)}
+			variant={lang === selectedLanguage ? "light" : "outline-light" }>
+			{props.postData.langv[lang].name}
+		</Button>));
 
   return (
   <Card key={"post_"+props.postData.id} bg="dark" className="text-white my-4">
     {
-      props.postData.picture ? <Card.Img style={{maxHeight: "30vh"}} variant="top" src={props.postData.picture} /> : null
+      props.postData.picture ? <Card.Img style={{maxHeight: "30vh", height: "240px"}} variant="top" src={props.postData.picture} /> : null
     }
 	  <Card.Header>
 			<Row>
 				<Col lg="10" md="9">
-					<h2>{props.postData.langv['pl'].title}</h2>
+					<h2>{props.postData.langv[selectedLanguage].title}</h2>
 				</Col>
 				<Col lg="2" md="3">
 					<Button style={{width: "50%"}} variant="outline-dark">
@@ -50,13 +65,16 @@ const post = (props) => {
 	    </Card.Subtitle>
 	  </Card.Header>
 	  <Card.Body className="text-light">
+			<ButtonGroup className="mb-2 flex-wrap" aria-label="Language selection">
+				{	languageButtons }
+			</ButtonGroup>
 			<div style={{whiteSpace: 'pre-wrap', fontSize: (props.textLarge ? "1.2rem" : "1rem")}}>
 				{ bodyText }
 			</div>
 			{
 				props.extended ? null : (
 					<LinkContainer to={"/paste/"+props.postData.id}> 
-		        <Button variant="outline-primary">Go to paste</Button>
+		        <Button className="mt-2 mx-auto" variant="outline-primary">Go to paste</Button>
     		  </LinkContainer>
 				)
 			}

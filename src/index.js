@@ -18,7 +18,17 @@ import {
   faEllipsisH,
   faTags,
   faThumbsUp,
-  faThumbsDown } from '@fortawesome/free-solid-svg-icons'
+  faThumbsDown,
+  faUserPlus,
+  faSignInAlt,
+  faPlusCircle,
+  faSearch,
+  faAlignCenter,
+  faBook,
+  faUsers,
+  faUser,
+faCompass,
+faHome } from '@fortawesome/free-solid-svg-icons'
 import {
   faBookmark as farBookmark,
   faThumbsUp as farThumbsUp,
@@ -41,7 +51,17 @@ library.add(
   faThumbsUp,
   faThumbsDown,
   farThumbsUp,
-  farThumbsDown );
+  farThumbsDown,
+  faUserPlus,
+  faSignInAlt,
+  faPlusCircle,
+  faSearch,
+  faAlignCenter,
+  faBook,
+  faUsers,
+  faUser,
+  faCompass,
+  faHome );
 
 WebFont.load({
   google: {
