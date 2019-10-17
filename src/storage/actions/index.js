@@ -1,0 +1,3 @@
+export {
+	fetchPost
+} from './posts';
